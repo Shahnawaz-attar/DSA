@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 1) Write a program to reverse an array or string
+        function reverseArray(arr) {
+            var newArr = [];
+            for (var i = arr.length - 1; i >= 0; i--) {
+                let item = arr[i];
+                newArr.push(item);
+            }
+            return newArr;
+        }
+        // way two 
+        const reverse_Array = (arr) => {
+
+
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = i + 1; j < arr.length; j++) {
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+
+            }
+            return arr
+
+        }
+
+        // let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // console.log(reverse_Array(array));
+        // console.log(reverseArray(array));
+
+
+        // 2) Write a program to reverse an array or string by DSA
+
+
+        const getMinMax = (arr, n) => {
+            let arr_max = 0;
+            let arr_min = 0
+            let min_max_arr = {};
+
+            if (n == 1) {
+                min_max_arr.arr_max = arr[0];
+                min_max_arr.arr_min = arr[0];
+
+            }
+
+            if (arr[0] > arr[1]) {
+                min_max_arr.arr_max = arr[0];
+                min_max_arr.arr_min = arr[1];
+
+            } else {
+                min_max_arr.arr_max = arr[1];
+                min_max_arr.arr_min = arr[0];
+            }
+
+            for (let i = 2; i < n; i++) {
+                if (arr[i] > min_max_arr.arr_max) {
+                    min_max_arr.arr_max = arr[i];
+                }
+                if (arr[i] < min_max_arr.arr_min) {
+                    min_max_arr.arr_min = arr[i];
+                }
+
+            }
+
+
+
+            return min_max_arr;
+
+
+        }
+        
+
+
+        /* Driver program to test above function */
+
+        var arr = [1000, 11, 445, 1, 330, 3000];
+        var arr_size = arr.length;
+        minmax = getMinMax(arr, arr_size);
+        console.log("Max is: " + minmax.arr_max);
+        console.log("Min is: " + minmax.arr_min);
+
+
+
+        // 3) Find the "Kth" max and min element of an array 
+
+
+        const findKthMaxMin = (arr, n, k) => {
+
+            // by sorting way
+            // return arr.sort((a, b)=>{
+            //     return a - b;
+            // })[k-1];
+
+            // find the kth max and min element of an array without sorting
+            for (let i = 0; i < n; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    let temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                }
+            }
+            return arr[k - 1];
+
+
+        }
+
+        // let arr = [7, 10, 4, 3, 20, 15];    
+        // let n = arr.length;
+        // let k = 2;
+        // console.log(findKthMaxMin(arr, n, k));
+
+
+
+
+
+
+
+        // 4) Given an array of size N containing only 0s, 1s, and 2s; sort the array in ascending order.
+
+        const sortArrayOfonesandzeros = (arr) => {
+            let i, j, temp;
+
+            for (i = 0; i < arr.length; i++) {
+                for (j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+
+                    }
+
+                }
+
+            }
+            return arr;
+
+        }
+
+        // let arr = [0,1,0,0,2,1,2,0,1,2];
+        // console.log(sortArrayOfonesandzeros(arr));
+        // let result = sortArrayOfonesandzeros(arr);
+        // console.log(result);
+
+
+        // 5) Move all the negative elements to one side of the array 
+
+
+        const moveNegativeElementsToOneSide = (arr) => {
+            let i, j, temp;
+
+            for (i = 0; i < arr.length; i++) {
+                for (j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j] < 0 && arr[j + 1] > 0) {
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+
+                    }
+                }
+
+            }
+            return arr
+
+
+        }
+
+        // let arr = [1, -2, 3, -4, 5, -6, 7, -8, 9, 10];
+        // console.log(moveNegativeElementsToOneSide(arr));
+        // let result = moveNegativeElementsToOneSide(arr);
+        // console.log(result);
+
+
+        // 6) Given two arrays a[] and b[] of size n and m respectively. The task is to find union between these two arrays.
+
+        // Union of the two arrays can be defined as the set containing distinct elements from both the arrays. If there are repetitions, then only one occurrence of element should be printed in the union.
+
+        const unionOfTwoArrays = (arr1, arr2) => {
+
+            let i, j, K;
+            let union = [];
+
+            for (i = 0; i < arr1.length; i++) {
+                union.push(arr1[i])
+            }
+
+            for (j = 0; j < arr2.length; j++) {
+                let found = false;
+                for (k = 0; k < union.length; k++) {
+                    if (arr2[j] == union[k]) {
+                        found = true;
+                        break;
+
+                    }
+
+                }
+                if (!found) {
+                    union.push(arr2[i])
+                }
+
+            }
+
+            return union;
+
+
+        }
+
+
+        // let arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12];
+        // let arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        // console.log(unionOfTwoArrays(arr1, arr2));
+
+        // let result = unionOfTwoArrays(arr1, arr2);
+        // console.log(result);
+
+        // intersection of two arrays can be defined as the set containing elements that are common in both the arrays.
+
+        function intersectionOfTwoArrays(arr1, arr2) {
+            var i;
+            var j;
+            var k;
+            var intersection = [];
+
+            for (i = 0; i < arr1.length; i++) {
+                for (j = 0; j < arr2.length; j++) {
+                    if (arr1[i] == arr2[j]) {
+                        intersection.push(arr1[i]);
+                    }
+                }
+            }
+            return intersection;
+        }
+
+        // let arrI1 = [1, 2, 3, 4, 5, 6, 7,  9, 10];
+        // let arrI2 = [1, 2, 3, 4, 5, 8, 9, 10];
+
+        // console.log(intersectionOfTwoArrays(arrI1, arrI2));
+
+
+        // 7) Write a program to cyclically rotate an array by one.
+        //Given an array, rotate the array by one position in clock-wise direction
+
+        const rotateArrayByOne = (arr) => {
+            let i, temp
+            temp = arr[arr.length - 1];
+
+            for (i = arr.length - 1; i > 0; i--) {
+                arr[i] = arr[i - 1];
+
+            }
+
+            arr[0] = temp;
+
+            return arr;
+
+        }
+
+        // let arrR = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // console.log(rotateArrayByOne(arrR));
+        // let result = rotateArrayByOne(arrR); 
+        // console.log(result);
+
+
+        // 8)Given an array Arr[] of N integers. Find the contiguous sub-array(containing at least one  number) which has the maximum sum and return its sum.
+
+        const maxSubArraySum = (arr) => {
+            let i;
+            let maxsum = 0;
+            let maxsumEndHere = 0;
+
+            for (i = 0; i < arr.length; i++) {
+                maxsumEndHere += arr[i]
+
+                if (maxsumEndHere < 0) {
+                    maxsumEndHere = 0;
+                }
+
+                if (maxsumEndHere > maxsum) {
+                    maxsum = maxsumEndHere
+
+                }
+
+            }
+            return maxsum;
+
+        }
+
+        // let arr = [1, 2, 3, 4,5,6, -10];
+        // console.log(maxSubArraySum(arr));
+        // let result = maxSubArraySum(arr);
+        // console.log(result);
+
+
+        // 9) Minimise the maximum difference between heights [V.IMP].
+        //Given an array arr[] denoting heights of N towers and a positive integer K, you have to modify the height of each tower either by increasing or decreasing them by K only once. After modifying, height should be a non-negative integer. 
+
+        //Find out the minimum possible difference of the height of shortest and longest towers after you have modified each tower.
+        //You can find a slight modification of the problem here.
+
+        function minMaxDifference(arr, k) {
+            var i;
+            var j;
+            var minDiff = 0;
+            var maxDiff = 0;
+            var minDiffEndingHere = 0;
+            var maxDiffEndingHere = 0;
+
+            for (i = 0; i < arr.length; i++) {
+                minDiffEndingHere = minDiffEndingHere + arr[i];
+                maxDiffEndingHere = maxDiffEndingHere + arr[i];
+                if (minDiffEndingHere < 0) {
+                    minDiffEndingHere = 0;
+                }
+                if (maxDiffEndingHere < 0) {
+                    maxDiffEndingHere = 0;
+                }
+                if (minDiffEndingHere > minDiff) {
+                    minDiff = minDiffEndingHere;
+                }
+                if (maxDiffEndingHere > maxDiff) {
+                    maxDiff = maxDiffEndingHere;
+                }
+            }
+            return maxDiff - minDiff;
+        }
+
+        // let arr = [1, 2, 3, 6, 7, 8, 9, 10];
+        // let k = 5;
+
+        // console.log(minMaxDifference(arr, k));
+
+
+
+
+
+        // 10)JavaScript program to find Minimum
+        // number of jumps to reach end
+
+        // Function to return the minimum number
+        // of jumps to reach arr[h] from arr[l]
+        // enable strict mode
+        function minJumps(arr, n) {
+            'use strict';
+            if (n == 1)
+                return 0;
+            let res = Number.MAX_VALUE;
+            for (let i = n - 2; i >= 0; i--) {
+                if (i + arr[i] >= n - 1) {
+                    let sub_res = minJumps(arr, i + 1);
+                    if (sub_res != Number.MAX_VALUE)
+                        res = Math.min(res, sub_res + 1);
+                }
+            }
+
+            return res;
+        }
+
+
+
+        // let arr = [1, 3, 6, 3, 2,3, 6, 8, 9, 5];
+        // let n = arr.length;
+        // document.write("Minimum number of jumps to");
+        // document.write(" reach end is " + minJumps(arr, n));
+
+
+        // 11) find duplicate in an array of N+1 Integers
+
+        const findDuplicate = (arr) => {
+            let i, j;
+            let count = 0;
+            let dublicate = 0;
+
+            for (i = 0; i < arr.length; i++) {
+                for (j = i + 1; j < arr.length; j++) {
+
+                    if (arr[i] == arr[j]) {
+                        count++;
+                        dublicate = arr[j];
+
+                    }
+
+                }
+
+            }
+            return {
+                "count": count,
+                "dublicate": dublicate
+            }
+
+        }
+
+        // let arr =[1,3,4,2,3]
+
+        // console.log(findDuplicate(arr));
+
+
+
+        // 12)Merge 2 sorted arrays without using Extra space.
+
+
+        const mergeTwoSortedArrays = (arr1, arr2) => {
+            let i, j, k;
+            let arr3 = [];
+            for (i = 0, j = 0, k = 0; i < arr1.length, j < arr2.length;) {
+
+                if (arr1[i] < arr2[j]) {
+                    arr3[k] = arr1[i]
+                    i++
+
+                } else {
+                    arr3[k] = arr2[j]
+                    j++
+                }
+                k++
+
+            }
+
+            while (i < arr1.length) {
+                arr3[k] = arr1[i];
+                i++;
+                k++;
+
+
+            }
+
+            while (j < arr2.length) {
+                arr3[k] = arr1[j];
+                j++;
+                k++;
+            }
+            return arr3
+
+
+        }
+
+        // let arr1 = [1, 3, 5, 7];
+        // let arr2 = [2, 4, 6, 8];
+
+        // console.log(mergeTwoSortedArrays(arr1, arr2));
+
+
+        // 13) Kadane's Algo 
+        //Given an array Arr[] of N integers. Find the contiguous sub-array(containing at least one number) which has the maximum sum and return its sum.
+
+
+        const maxSubArray = function (nums) {
+            let maxSoFar = nums[0];
+            let max = nums[0];
+
+            for (i = 1; i < nums.length; i++) {
+                let current = nums[i];
+                maxSoFar = Math.max(current, current + maxSoFar);
+                max = Math.max(current, maxSoFar)
+
+            }
+            return max;
+
+        };
+
+        // let arr = [1, 2, 3, -4, 5, -6, 7, 8, -9, 10];
+        // console.log(maxSubArray(arr));
+
+
+        // 14)Merge Intervals
+        // Given a collection of intervals, merge all overlapping intervals.
+
+
+        const mergeIntervals = (intervals) => {
+
+            let i, j;
+            let mergeInterval = [];
+            let currentInterval = intervals[0];
+
+            for (i = 1; i < intervals.length; i++) {
+                let nextInterval = intervals[i];
+
+                if (nextInterval[0] <= currentInterval[1]) {
+                    currentInterval[1] = Math.max(currentInterval[1], nextInterval[1]);
+
+                } else {
+                    mergeInterval.push(currentInterval);
+                    currentInterval = nextInterval;
+                }
+
+            }
+            mergeInterval.push(currentInterval);
+            return mergeInterval;
+
+
+        }
+
+        // let intervals = [[1, 3], [2, 6], [8, 10], [15, 18]];
+        // console.log(mergeIntervals(intervals));
+
+
+        // 15 Next Permutation
+        // Given an array of integers, find the next greater permutation of it in lexicographical order.
+
+        const nextPermutation = (nums) => {
+
+            let i, j;
+            let swap = false;
+
+            for (i = nums.length - 1; i > 0; i--) {
+                if (nums[i] > nums[i - 1]) {
+                    swap = true;
+                    break;
+
+                }
+
+            }
+
+            if (!swap) {
+                return nums.reverse();
+
+            }
+
+            for (j = i; j < nums.length; j++) {
+                if (nums[j] > nums[j - 1]) {
+                    break;
+                }
+
+            }
+
+            let temp = nums[i - 1];
+            nums[i - 1] = nums[j];
+            nums[j] = temp;
+
+            return nums
+
+        }
+
+        // let nums = [1,2,3];
+        // console.log(nextPermutation(nums));
+
+
+        //16)  Count Inversion
+        // Given an array of integers, count the number of inversions in the array.
+
+        const countInversion = (nums) => {
+
+            let i, j;
+            let count = 0;
+
+            for (i = 0; i < nums.length; i++) {
+                for (j = i + 1; j < nums.length; j++) {
+                    if (nums[i] > nums[j]) {
+                        count++;
+                    }
+
+                }
+
+            }
+
+            return count;
+
+        }
+
+        // let arr = [1,2,3,4,9,7,6]
+        // console.log(countInversion(arr));
+
+        //17)Best time to buy and Sell stock 
+        // Given an array of prices for a stock for each day. Find the max profit that you can make by buying and selling a stock once.
+
+        const maxProfit = (prices) => {
+            let i, j;
+            let maxProfit = 0;
+            let minPrice = prices[0];
+            let maxPrice = prices[0];
+
+            for (i = 1; i < prices.length; i++) {
+                minPrice = Math.min(minPrice, prices[i]);
+                maxPrice = Math.max(maxPrice, prices[i]);
+                maxProfit = Math.max(maxProfit, maxPrice - minPrice);
+
+            }
+            return maxProfit;
+        }
+
+        // let prices = [7,1,5,3,6,4,8,9,10]
+        // console.log(` Max Profit : ${maxProfit(prices)}`);
+
+        //18) find all pairs on integer array whose sum is equal to given number
+        // Given an array of integers, find all pairs of integers whose sum is equal to a given number.
+
+        const findPairs = (nums, target) => {
+            let i, j;
+            let pairs = [];
+            for (i = 0; i < nums.length; i++) {
+                for (j = i + 1; j < nums.length; j++) {
+                    if (nums[i] + nums[j] == target) {
+                        pairs.push([nums[i], nums[j]]);
+                    }
+                }
+            }
+            return pairs;
+        }
+
+        // let nums = [1,6,5,9,4];
+        // let target = 7;
+        // console.log(findPairs(nums,target));
+
+
+        // 19 ) find common elements In 3 sorted arrays
+        // Given three sorted arrays A, B and C of size N each, find the count of common elements between all three arrays.
+
+        const commonElements = (arr1, arr2, arr3) => {
+            let i, j, k;
+            let count = 0;
+            let arr = [];
+            for (i = 0; i < arr1.length; i++) {
+                for (j = 0; j < arr2.length; j++) {
+                    for (k = 0; k < arr3.length; k++) {
+                        if (arr1[i] == arr2[j] && arr1[i] == arr3[k]) {
+                            arr.push(arr1[i]);
+                            count++;
+                        }
+                    }
+                }
+            }
+            return {
+                count,
+                arr
+            };
+        }
+
+        // let arr1 = [1,2,3,4,5,6,7,8,9];
+        // let arr2 = [1,2,7,8,9];
+        // let arr3 = [1,2,3,4,5];
+        // console.log(commonElements(arr1,arr2,arr3));
+
+
+        // 20) Rearrange the array in alternating positive and negative items with O(1) extra space
+        // Given an array of positive and negative numbers, arrange them in a manner such that positive and negative numbers are alternateed and every positive number is followed by negative number
+
+
+        // Input:  arr[] = {1, 2, 3, -4, -1, 4}
+        // Output: arr[] = {-4, 1, -1, 2, 3, 4}
+
+        const rearrange = (arr) => {
+            let i, j;
+            let temp;
+            let count = 0;
+            for (i = 0; i < arr.length; i++) {
+                if (arr[i] < 0) {
+                    temp = arr[i];
+                    arr[i] = arr[count];
+                    arr[count] = temp;
+                    count++;
+                }
+                // 
+            }
+            return arr;
+        }
+
+        // let arr = [1, 2, 3, -4, -1, 4];
+        // console.log(rearrange(arr));
+
+
+        //21)Find if there is any subarray with sum equal to 0
+
+        const subArray = (arr) => {
+            let i, j;
+            let sum = 0;
+            let count = 0;
+            for (i = 0; i < arr.length; i++) {
+                sum = 0;
+                for (j = i; j < arr.length; j++) {
+                    sum += arr[j];
+                    if (sum == 0) {
+                        count++;
+                    }
+                }
+            }
+            return count;
+
+
+        }
+
+        // let arr = [1,2,3,4,0,6,7,8,0];
+        // console.log(subArray(arr));
+
+
+        // 22) Find factorial of a large number
+
+        const factorialoflargenum = (arr) => {
+            //check the largest number in the array and then find the factorial of that number
+            let i, j;
+            let max = arr[0];
+            for (i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            let factorial = 1;
+            for (j = 1; j <= max; j++) {
+                factorial = factorial * j;
+            }
+            return factorial;
+
+
+
+
+
+        }
+
+
+
+        // let arr = [2,6,7,3,1,6,4];
+
+        // console.log(factorialoflargenum(arr));
+
+
+        // 23) find maximum product subarray 
+        // Given an array of integers, find the maximum product subarray.
+
+
+        const maxProductSubarray = (arr) => {
+
+
+
+            let i, j;
+            let maxProd = arr[0];
+            let maxEndhere = arr[0];
+            let minEndhere = arr[0]
+
+            for (i = 1; i < arr.length; i++) {
+                maxEndhere = Math.max(arr[i], maxEndhere * arr[i], minEndhere * arr[i]);
+                minEndhere = Math.min(arr[i], maxEndhere * arr[i], minEndhere * arr[i]);
+                maxProd = Math.max(maxProd, maxEndhere);
+
+            }
+            return maxProd;
+        }
+
+        // let arr = [6, -3, -10, 0, 2,96];
+        // console.log(maxProductSubarray(arr));
+
+
+        // 24)Find longest coinsecutive subsequence
+        // Given an array of positive integers. Find the length of the longest sub-sequence such that elements in the subsequence are consecutive integers, the consecutive numbers can be in any order.
+        // JavaScript program to find longest
+        // contiguous subsequence
+
+        // Returns length of the longest
+        // contiguous subsequence
+        const findLongestConseqSubseq = (arr, n) => {
+            let ans = 0, count = 0;
+            arr.sort((a, b) => {
+                return a - b
+            })
+            let v = [];
+            v.push(arr[0]);
+
+            for (i = 1; i < arr.length; i++) {
+                if (arr[i] != arr[i - 1]) {
+                    v.push(arr[i])
+                }
+            }
+            for (i = 0; i < v.length; i++) {
+                if (i > 0 && v[i] == v[i - 1] + 1) {
+                    count++;
+                } else {
+                    count = 1;
+                }
+                ans = Math.max(ans, count);
+            }
+            return count
+
+        }
+
+        // Driver code
+
+        // let arr = [1,3,2,7,7,6,4,5];
+        // let n = arr.length;
+        // console.log(findLongestConseqSubseq(arr, n));
+
+
+
+        // 25) Given an array of size n and a number k, fin all elements that appear more than " n/k " times.
+        const morethanNdK = (a, n, k) => {
+            let x = n / k;
+            let y = new Map();
+            for (let i = 0; i < n; i++) {
+                if (!y.has(a[i])) {
+                    y.set(a[i], 1)
+
+                } else {
+                    let count = y.get(a[i]);
+                    y.set(a[i], count + 1)
+
+                }
+            }
+            for (let [index, value] of y.entries()) {
+
+                let temp = value;
+                if (temp > x) {
+                    console.log(index)
+                }
+            }
+        }
+        // let a=[1, 1, 2, 2, 3, 5, 4, 2, 2, 3, 1, 1, 1];
+        // let n = 12;
+        // let k = 4;
+        // morethanNdK(a, n, k);
+
+
+        // 26)  Maximum profit by buying and selling a share atmost twice
+
+        function maxProfitt(price, n) {
+
+            // Create profit array and
+            // initialize it as 0
+            let profit = new Array(n);
+
+            for (let i = 0; i < n; i++)
+                profit[i] = 0;
+
+
+
+            /* Get the maximum profit with
+            only one transaction
+            allowed. After this loop,
+            profit[i] contains maximum
+            profit from price[i..n-1]
+            using at most one trans. */
+            let max_price = price[n - 1];
+            for (let i = n - 2; i >= 0; i--) {
+
+                // max_price has maximum
+                // of price[i..n-1]
+                if (price[i] > max_price)
+                    max_price = price[i];
+
+                // We can get profit[i] by taking maximum of:
+                // a) previous maximum, i.e., profit[i+1]
+                // b) profit by buying at price[i] and selling at
+                // max_price
+                profit[i] = Math.max(profit[i + 1],
+                    max_price - price[i]);
+            }
+            // Get the maximum profit with
+            // two transactions allowed
+            // After this loop, profit[n-1]
+            // contains the result
+            let min_price = price[0];
+            for (let i = 1; i < n; i++) {
+                // min_price is minimum price
+                // in price[0..i]
+                if (price[i] < min_price)
+                    min_price = price[i];
+
+                // Maximum profit is maximum of:
+                // a) previous maximum, i.e., profit[i-1]
+                // b) (Buy, Sell) at (min_price, price[i]) and add
+                // profit of other trans. stored in profit[i]
+                profit[i] = Math.max(profit[i - 1],
+                    profit[i] + (price[i] - min_price));
+            }
+            let result = profit[n - 1];
+
+            return result;
+        }
+
+        // Driver code
+        // let price = [2, 30, 15, 10, 8, 25, 80];
+        // let n = price.length;
+
+        // document.write("Maximum Profit = " +
+        // maxProfitt(price, n));
+
+
+        //27 ) Find whether an array is a subset of another array
+        // Given two arrays: a1[0..n-1] of size n and a2[0..m-1] of size m. Task is to check whether a2[] is a subset of a1[] or not. Both the arrays can be sorted or unsorted.
+        // Input:
+        // a1[] = {11, 1, 13, 21, 3, 7}
+        // a2[] = {11, 3, 7, 1}
+        // Output:
+        // Yes
+
+
+        function isSubset(arr1, arr2, m, n) {
+            let i = 0;
+            let j = 0;
+            let new_arr = [];
+            for (i = 0; i < n; i++) {
+                for (j = 0; j < m; j++)
+                    if (arr2[i] == arr1[j])
+                        new_arr.push(arr1[i]);
+                break;
+
+                /* If the above inner loop 
+                was not broken at all then
+                arr2[i] is not present in
+                arr1[] */
+                if (j == m)
+                    return false;
+            }
+
+
+            /* If we reach here then all
+            elements of arr2[] are present
+            in arr1[] */
+            return {
+                isSubset: true,
+                new_arr: new_arr
+            };
+        }
+
+        // Driver Code
+        //     let arr1 = [ 11, 1, 13, 21, 3, 7 ];
+        //     let arr2 = [ 11, 3, 7, 1 ];
+
+        //     let m = arr1.length;
+        //     let n = arr2.length;
+
+        //   console.log(isSubset(arr1, arr2, m, n));
+
+
+
+        // 28) Find the triplet that sum to a given value
+        // Given an array arr of size n and an integer X. Find if there's a triplet in the array which sums up to the given integer X.
+
+        // Input:
+        // n = 6, X = 13
+        // arr[] = [1 4 45 6 10 8]
+        // Output:
+        // 1
+
+
+
+        function findTriplet(arr, n, x) {
+            for (let i = 0; i < n; i++) {
+                for (let j = i + 1; j < n; j++) {
+                    for (let k = j + 1; k < n; k++) {
+                        if (arr[i] + arr[j] + arr[k] == x) {
+                            return {
+                                isTriplet: true,
+                                triplet: [arr[i], arr[j], arr[k]]
+                            };
+                        }
+                    }
+                }
+            }
+            // return that triplet if exists
+            return {
+                isTriplet: false,
+                triplet: []
+            };
+        }
+
+        // Driver Code
+        // let arr = [1, 4, 45, 6, 10, 8];
+        // let n = arr.length;
+        // let x = 13;
+        // console.log(findTriplet(arr, n, x));
+
+
+
+
+        // 29) Trapping Rain water problem
+        //Given an array arr[] of N non-negative integers representing the height of blocks. If width of each block is 1, compute how much water can be trapped between the blocks during the rainy season. 
+
+        // Input:
+        // N = 6
+        // arr[] = {3,0,0,2,0,4}
+
+        // Output:
+        // 10
+
+        function trappingRainWater(arr, n) {
+            let left = new Array(n);
+            let right = new Array(n);
+            let max_left = 0;
+            let max_right = 0;
+            let water = 0;
+            for (i = 0; i < n; i++) {
+                left[i] = 0;
+                right[i] = 0;
+            }
+
+            for (i = 0; i < n; i++) {
+                if (arr[i] > max_left) {
+                    max_left = arr[i]
+
+                }
+                left[i] = max_left
+
+
+            }
+            for (i = n - 1; i >= 0; i--) {
+                if (arr[i] > max_right) {
+                    max_right = arr[i]
+
+                }
+                right[i] = max_right
+
+
+            }
+
+            for (i = 0; i < n; i++) {
+                water += Math.min(left[i], right[i]) - arr[i]
+
+            }
+            return water
+
+        }
+
+        // Driver Code
+        // let arr = [3, 0, 0, 2, 0, 4];
+        // let n = arr.length;
+        // console.log(trappingRainWater(arr, n));
+
+
+        // 31 )Chocolate Distribution problem
+        // Given an array A[ ] of positive integers of size N, where each value represents the number of chocolates in a packet. Each packet can have a variable number of chocolates. There are M students, the task is to distribute chocolate packets among M students such that :
+        // 1. Each student gets exactly one packet.
+        // 2. The difference between maximum number of chocolates given to a student and minimum number of chocolates given to a student is minimum.
+
+        const findMinDiff = (arr, n, m) => {
+            if (m == 0 || n == 0) {
+                return 0;
+            }
+            arr.sort((a, b) => { return a - b })
+
+            if (n < m) {
+                return -1;
+            }
+
+            min_diff = Number.MAX_VALUE;
+
+            for (let i = 0; i + m - 1 < n; i++) {
+
+                let diff = arr[i + m - 1] - arr[i]
+                if (diff < min_diff) {
+                    min_diff = diff;
+
+                }
+
+            }
+            return min_diff
+        }
+
+        // Driver code
+        // let arr = [12, 4, 7, 9, 2, 10,12,13];
+
+        // Number of students
+        // let m = 7; 
+        // let n = arr.length;
+
+        //    console.log(findMinDiff(arr, n, m));
+
+
+
+        // 32) Smallest Subarray with sum greater than a given value
+        //Given an array of integers (A[])  and a number x, find the smallest subarray with sum greater than the given value.
+        // Input:
+        // A[] = {1, 10, 5, 2, 7}
+        // x  = 9
+        // Output: 1
+
+
+
+        function smallestSubWithSum(arr, n, x) {
+
+            // Initialize length of smallest subarray as n+1
+            let min_len = n + 1;
+            let Subarray = [];
+
+            // Pick every element as starting point
+            for (let start = 0; start < n; start++) {
+
+                // Initialize sum starting with current start
+                let curr_sum = arr[start];
+
+                // If first element itself is greater
+                if (curr_sum > x) return 1;
+
+                // Try different ending points for curremt start
+                for (let end = start + 1; end < n; end++) {
+
+                    // add last element to current sum
+                    curr_sum += arr[end];
+
+
+
+                    // If sum becomes more than x and length of
+                    // this subarray is smaller than current smallest
+                    // length, update the smallest length (or result)
+                    if (curr_sum > x && (end - start + 1) < min_len)
+                        min_len = (end - start + 1);
+                }
+            }
+            return min_len;
+        }
+
+        /* Driver program to test above function */
+        // let arr1 = [1, 4, 45, 6, 10, 19];
+        // let x = 51;
+        // let n1 = arr1.length;
+        // let res1 = smallestSubWithSum(arr1, n1, x);
+        // console.log("Length of the smallest subarray is " + res1);
+
+
+
+        // 33) Minimum no. of operations required to make an array palindrome
+        // Given a Integer array A[] of n elements. Your task is to complete the function PalinArray. Which will return 1 if all the elements of the Array are palindrome otherwise it will return 0.
+        function PalinArray(arr, n) {
+            let count = 0;
+            for (let i = 0; i < n; i++) {
+                let str = arr[i].toString();
+                let rev = str.split("").reverse().join("");
+                if (str == rev) {
+                    count++;
+                }
+            }
+            if (count == n) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+        // Driver code
+        // let arr = [111, 222, 333, 444, 555];
+        // let n = arr.length;
+        // console.log(PalinArray(arr, n));
+
+
+
+        // 34) Median of 2 sorted arrays of equal size
+        // Given an array arr[] of N integers, calculate the median
+
+
+        function medianOfTwoSortedArrays(arr1, arr2, n) {
+            let mid = Math.floor(n / 2);
+            let mid1 = arr1[mid];
+            let mid2 = arr2[mid];
+            if (n % 2 == 0) {
+                return (mid1 + mid2) / 2;
+            } else {
+                return Math.max(mid1, mid2);
+            }
+        }
+
+        // Driver code
+
+        // let arr1 = [1, 3, 5, 7,9];
+        // let arr2 = [2, 4, 6, 8];
+        // let n = arr1.length;
+        // console.log(medianOfTwoSortedArrays(arr1, arr2, n));
+
+
+        // 35) Find the median of two sorted arrays of different sizes
+
+        function getMedian(ar1, ar2, n, m) {
+
+            // Current index of input array ar1[]
+            let i = 0;
+
+            // Current index of input array ar2[]
+            let j = 0;
+            let count;
+            let m1 = -1, m2 = -1;
+
+            // Since there are (n+m) elements,
+            // There are following two cases
+            // if n+m is odd then the middle
+            // index is median i.e. (m+n)/2
+            if ((m + n) % 2 == 1) {
+                console.log(2);
+                for (count = 0;
+                    count <= (n + m) / 2;
+                    count++) {
+                    if (i != n && j != m) {
+                        m1 = (ar1[i] > ar2[j]) ?
+                            ar2[j++] : ar1[i++];
+                    }
+                    else if (i < n) {
+                        m1 = ar1[i++];
+                    }
+
+                    // For case when j<m,
+                    else {
+                        m1 = ar2[j++];
+                    }
+                }
+                return m1;
+            }
+
+            // Median will be average of elements
+            // at index ((m+n)/2 - 1) and (m+n)/2
+            // in the array obtained after merging
+            // ar1 and ar2
+            else {
+
+                for (count = 0;
+                    count <= (n + m) / 2;
+                    count++) {
+                    m2 = m1;
+                    if (i != n && j != m) {
+                        m1 = (ar1[i] > ar2[j]) ?
+                            ar2[j++] : ar1[i++];
+                    }
+                    else if (i < n) {
+                        m1 = ar1[i++];
+                    }
+
+                    // For case when j<m,
+                    else {
+                        m1 = ar2[j++];
+                    }
+                }
+                return (m1 + m2) / 2;
+            }
+        }
+
+        // Driver code
+        // let ar1 = [900];
+        // let ar2 = [5, 8, 10, 20];
+
+        // let n1 = ar1.length;
+        // let n2 = ar2.length;
+        // document.write(getMedian(ar1, ar2, n1, n2));
+
+
+    </script>
+
+</body>
+
+</html>
